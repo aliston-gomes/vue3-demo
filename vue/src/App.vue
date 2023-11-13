@@ -4,9 +4,8 @@ import HelloWorld from "./components/HelloWorld.vue";
 
 <template>
   <div>
+    <HelloWorld />
   </div>
-  <HelloWorld />
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
