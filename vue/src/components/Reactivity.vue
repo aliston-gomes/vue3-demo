@@ -2,9 +2,23 @@
   <div>
     <!-- <h1>{{ person.hobbies.game }}</h1> -->
     <v-btn> Button </v-btn>
+    <div class="text-center ma-2">
+      <v-btn @click="snackbar = true"> Open Snackbar </v-btn>
+      <v-snackbar v-model="snackbar">
+        {{ text }}
+
+        <template v-slot:actions>
+          <v-btn color="red" variant="text" @click="snackbar = false">
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+    </div>
   </div>
 </template>
 <script setup>
+const snackbar = ref(false);
+const text = reactive("Hello World");
 import { reactive, ref } from "vue";
 const person = reactive({
   name: "aliston",
