@@ -9,12 +9,14 @@
     <!-- <GlobalComponent />/ -->
     <!-- TEXT INTERPOLATION -->
     <!-- <TextInterpolation /> -->
-    <Reactivity />
+    <!-- <Reactivity /> -->
+    <Forms />
   </section>
 </template>
 <script setup>
 import { ref } from "vue";
 import TextInterpolation from "./TextInterpolation.vue";
+import Forms from "./Forms.vue";
 import Reactivity from "./Reactivity.vue";
 //VARIABLES
 const name = ref("VUE-JS");

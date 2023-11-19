@@ -1,4 +1,6 @@
 import { createApp } from "vue";
+import { createPinia } from "pinia";
+const pinia = createPinia();
 // import "./style.css";
 import "vuetify/styles";
 import App from "./App.vue";
@@ -9,7 +11,7 @@ const vuetify = createVuetify({
   components,
   directives,
 });
-createApp(App).use(vuetify).mount("#app");
+createApp(App).use(vuetify).use(pinia).mount("#app");
 // import GlobalComponent from "./components/GlobalComponent.vue";
 // const app = createApp(App);
 // app.component("GlobalComponent", GlobalComponent);
