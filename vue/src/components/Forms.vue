@@ -17,57 +17,85 @@
           <v-btn @click="Increment">ADD</v-btn>
           <v-btn @click="Decrement">SUB</v-btn>
           <v-btn @click="Reset">RST</v-btn>
-          <v-btn>{{ doubleCount }}</v-btn>
+          <!-- <v-btn>{{ doubleCount }}</v-btn> -->
+          <!-- <v-btn @click="$reset">x</v-btn> -->
+          <v-btn @click="$patch">Patch</v-btn>
+
           <!-- <button @click.stop="doubleCount">Double</button> -->
           <!-- <v-btn icon="mdi-format-align-justify"></v-btn> -->
         </v-btn-toggle>
         <!-- </div> -->
       </v-card-item>
     </v-card>
-  </v-container>
-  <!-- <form action="">
-    <v-text-field
-      variant="outlined"
-      v-model="FormData.name"
-      :error-messages="v$.name.$errors.map(e => e.$message)"
-      :counter="10"
-      label="Name"
-      required
-      @input="v$.name.$touch"
-      @blur="v$.name.$touch"
-    ></v-text-field>
-    <v-text-field
-      v-model="FormData.email"
-      :error-messages="v$.email.$errors.map(e => e.$message)"
-      :counter="10"
-      label="Email"
-      required
-      @input="v$.email.$touch"
-      @blur="v$.email.$touch"
-    ></v-text-field>
+    <div>{{ get_person_data }}</div>
+    <form action="">
+      <v-text-field
+        variant="outlined"
+        v-model="FormData.name"
+        :error-messages="v$.name.$errors.map(e => e.$message)"
+        :counter="10"
+        label="Name"
+        required
+        @input="v$.name.$touch"
+        @blur="v$.name.$touch"
+      ></v-text-field>
+      <v-text-field
+        v-model="FormData.email"
+        :error-messages="v$.email.$errors.map(e => e.$message)"
+        :counter="10"
+        label="Email"
+        required
+        @input="v$.email.$touch"
+        @blur="v$.email.$touch"
+      ></v-text-field>
 
-    <v-select
-      v-model="FormData.city"
-      :items="xpedia"
-      item-title="name"
-      item-value="id"
-      :error-messages="v$.city.$errors.map(e => e.$message)"
-      label="City"
-      required
-      @change="v$.city.$touch"
-      @blur="v$.city.$touch"
-    ></v-select>
-  </form> -->
+      <v-select
+        v-model="FormData.city"
+        :items="xpedia"
+        item-title="name"
+        item-value="id"
+        :error-messages="v$.city.$errors.map(e => e.$message)"
+        label="City"
+        required
+        @change="v$.city.$touch"
+        @blur="v$.city.$touch"
+      ></v-select>
+    </form>
+    <!-- <div>{{ get_products_data }}</div> -->
+    <v-card>
+      <v-card-item v-for="(item, index) in get_products_data" :key="index">
+        <div>{{ item.title }}</div>
+      </v-card-item>
+    </v-card>
+  </v-container>
 </template>
 <script setup>
-import { reactive } from "vue";
+import { onBeforeMount, onMounted, reactive } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, helpers } from "@vuelidate/validators";
 import { MY_STORE } from "../store/myStore";
 import { storeToRefs } from "pinia";
 const STORE = MY_STORE();
-const { name, count, doubleCount } = storeToRefs(STORE);
-const { Increment, Reset, Decrement } = STORE;
+const { name, count, doubleCount, get_products_data } = storeToRefs(STORE);
+const {
+  Increment,
+  Reset,
+  Decrement,
+  GetProducts,
+  $reset,
+  $patch,
+  get_person_data,
+} = STORE;
+//TRIGERS BEFORE THE COMPONENT MOUNTS
+onBeforeMount(() => {
+  console.log("ON-BEFORE MOUNT TRIGERED");
+  GetProducts();
+  // get_person_data();
+});
+onMounted(() => {
+  console.log("MOUNTED");
+  console.log(STORE.$state);
+});
 const formFields = {
   name: "",
   age: "",
