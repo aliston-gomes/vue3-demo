@@ -7,6 +7,9 @@ import App from "./App.vue";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
+function SecretPiniaPlugin() {
+  return { secret: "the cake is a lie" };
+}
 const vuetify = createVuetify({
   components,
   directives,
