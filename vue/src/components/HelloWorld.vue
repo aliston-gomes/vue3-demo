@@ -10,7 +10,8 @@
     <!-- TEXT INTERPOLATION -->
     <!-- <TextInterpolation /> -->
     <!-- <Reactivity /> -->
-    <Forms />
+    <!-- <Forms /> -->
+    <StoreUsage />
   </section>
 </template>
 <script setup>
@@ -18,6 +19,7 @@ import { ref } from "vue";
 import TextInterpolation from "./TextInterpolation.vue";
 import Forms from "./Forms.vue";
 import Reactivity from "./Reactivity.vue";
+import StoreUsage from "./StoreUsage.vue";
 //VARIABLES
 const name = ref("VUE-JS");
 const html = ref(`<p >Html</p>`);
